@@ -12,6 +12,7 @@ A PostgreSQL-based Municipality Request Management System developed during my Da
 --
 
 # Project Overview
+
 This project is a relational database system designed to manage municipality service requests submitted by citizens.
 The system simulates a real municipality workflow where requests are created by citizens, assigned to employees, managed by department managers, and monitored by database administrators.
 The project was developed using PostgreSQL and includes advanced database concepts such as triggers, transactions, indexing, RBAC security, backup & restore, monitoring, and performance optimization.
@@ -19,6 +20,7 @@ The project was developed using PostgreSQL and includes advanced database concep
 --
 
 # Features:
+
 - Citizen Request Management
 - Department & Category Management
 - Employee Assignment
@@ -37,12 +39,21 @@ The project was developed using PostgreSQL and includes advanced database concep
 --
 
 # Technologies
+
 - PostgreSQL
 - PL/pgSQL
 - pgAdmin 4
 - SQL
 - Git
 - Github
+
+--
+
+# Entity Relationship Diagram
+
+The following ER diagram represents the relational structure of the Municipality Request Management System database.
+
+![ER Diagram](docs/ER_Diagram.png)
 
 --
 # Project Structure
