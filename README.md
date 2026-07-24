@@ -1,5 +1,12 @@
 # Municipality Request Management System
 
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue?logo=postgresql)
+![SQL](https://img.shields.io/badge/SQL-Database-blue)
+![PLpgSQL](https://img.shields.io/badge/PL%2FpgSQL-Functions-success)
+![Git](https://img.shields.io/badge/Git-Version%20Control-orange?logo=git)
+![GitHub](https://img.shields.io/badge/GitHub-Portfolio-black?logo=github)
+
+
 A PostgreSQL-based Municipality Request Management System developed during my Database Internship.
 
 --
@@ -11,35 +18,40 @@ The project was developed using PostgreSQL and includes advanced database concep
 
 --
 
-# The system includes:
--Citizen Request Management
--Employee Assignment
--Department Management
--Request Tracking
--Request History
--Audit Logging
--Notification System
--Security(RBAC)
--Transaction Management
--Backup & Restore
--Performance Optimization
--Database Monitoring
+# Features:
+- Citizen Request Management
+- Department & Category Management
+- Employee Assignment
+- Request Status Tracking
+- Request History
+- Notification System
+- Audit Logging
+- Database Triggers
+- PL/pgSQL Functions
+- Transaction Management
+- Role-Based Access Control (RBAC)
+- Backup & Restore
+- Performance Optimization
+- Database Monitoring
 
 --
 
 # Technologies
--PostgreSQL
--PL/pgSQL
--pgAdmin 4
--SQL
--Git
--Github
+- PostgreSQL
+- PL/pgSQL
+- pgAdmin 4
+- SQL
+- Git
+- Github
 
 --
 # Project Structure
 
 Municipality-Request-Management-System
 ├── Backup_Restore
+│	├── municipality.backup
+│	├── schema_only.backup
+│	└── data_only.backup
 ├── create_tables.sql
 ├── deadlock.sql
 ├── index_performance_report.sql
@@ -51,24 +63,74 @@ Municipality-Request-Management-System
 ├── seed_data_function.sql
 ├── transaction.sql
 ├── trigger.sql
-└── views.sql
+├── views.sql
+└── README.md
 
 --
 
 # Database Modules
 
--Database Design
--Normalization(3NF)
--Constraints
--Views
--PL/pgSQL Functions
--Triggers
--Transactions
--Security(RBAC)
--Indexes
--Performance Optimization
--Monitoring
--Backup & Restore
+- Database Design
+
+- Relational Model
+
+- Third Normal Form (3NF)
+
+- Constraints
+
+- Views
+
+- PL/pgSQL Functions
+
+- Triggers
+
+- Transactions
+
+- Savepoints
+
+- Lock & Deadlock
+
+- Role Based Access Control
+
+- Audit Logging
+
+- Notification System
+
+- Backup & Restore
+
+- Performance Optimization
+
+- Monitoring
+
+--
+
+# Municipality Workflow
+
+Citizen
+    │
+    ▼
+Create Request
+    │
+    ▼
+Department Manager
+    │
+Assign Employee
+    │
+    ▼
+Employee
+    │
+Process Request
+    │
+    ▼
+Request Status Updated
+    │
+    ├──────────────┐
+    ▼              ▼
+Notification    Audit Log
+    │              │
+    ▼              ▼
+Request History Created
+
 
 --
 
@@ -90,6 +152,36 @@ Permissions were managed using:
 
 --
 
+#Trigger System
+
+Implemented automatic database automation using PostgreSQL Triggers.
+
+## Request History Trigger
+
+Automatically records every request status change.
+
+## Notification Trigger
+
+Automatically sends notifications to:
+
+- Managers
+- Employees
+- Citizens
+
+depending on request status.
+
+## Audit Log Trigger
+
+Stores:
+
+- INSERT
+- UPDATE
+- DELETE
+
+operations into the audit_logs table.
+
+--
+
 # Performance Optimization
 
 Implemented:
@@ -99,9 +191,11 @@ Implemented:
 -EXPLAIN
 -EXPLAIN ANALYZE
 
+Performance improvements were verified using PostgreSQL execution plans.
+
 --
 
-# Backup % Restore
+# Backup & Restore
 
 Implemented backup strategies using PostgreSQL tools.
 
@@ -112,10 +206,75 @@ Implemented backup strategies using PostgreSQL tools.
 
 --
 
+# Monitoring
+
+The project includes PostgreSQL monitoring queries for analyzing database health and performance.
+
+Implemented monitoring queries include:
+
+- Active Database Sessions (`pg_stat_activity`)
+- Blocking Sessions Detection (`pg_blocking_pids`)
+- Lock & Wait Analysis
+- Database Statistics (`pg_stat_database`)
+- Cache Hit Ratio Analysis
+- Sequential Scan vs Index Scan Statistics
+- Index Usage Statistics (`pg_stat_user_indexes`)
+- Database Index Information (`pg_indexes`)
+- Table Size Analysis (`pg_relation_size`)
+- Total Relation Size Analysis (`pg_total_relation_size`)
+
+--
+
+# Concepts Practices
+
+- Database Design
+- Normalization
+- Constraints
+- Views
+- PL/pgSQL
+- Functions
+- Triggers
+- Transactions
+- Savepoints
+- Lock
+- Deadlock
+- RBAC
+- Security Definer
+- Backup
+- Restore
+- Monitoring
+- Indexes
+- Performance Optimization
+- VACUUM
+- EXPLAIN ANALYZE
+
+--
+
+# Screenshots
+
+- ER Diagram
+- pgAdmin Tables
+- Trigger Demonstration
+- Audit Logs
+- Notifications
+- Security Tests
+- EXPLAIN ANALYZE Results
+
+--
+
+# Future Improvements
+
+- REST API Integration
+- Docker Support
+- PostgreSQL Partitioning
+- CI/CD Pipeline
+- Web Application Integration
+
 #Author
 
 Aleyna Karataş
 
+PostgreSQL | SQL | PL/pgSQL | Database Design
 
 
 
