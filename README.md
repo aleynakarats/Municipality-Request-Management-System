@@ -76,8 +76,7 @@ Municipality-Request-Management-System
 │	└── data_only.backup
 ├── sql
 │	├── create_tables.sql
-│	├── deadlock_deneme.sql
-│	├── index_performance_report.sql
+│	├── deadlock_simulation.sql
 │	├── indexes.sql
 │	├── monitoring.sql
 │	├── performance_analysis.sql
