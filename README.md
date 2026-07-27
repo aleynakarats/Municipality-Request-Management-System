@@ -9,7 +9,7 @@
 
 A PostgreSQL-based Municipality Request Management System developed during my Database Internship.
 
---
+---
 
 # Project Overview
 
@@ -17,26 +17,35 @@ This project is a relational database system designed to manage municipality ser
 The system simulates a real municipality workflow where requests are created by citizens, assigned to employees, managed by department managers, and monitored by database administrators.
 The project was developed using PostgreSQL and includes advanced database concepts such as triggers, transactions, indexing, RBAC security, backup & restore, monitoring, and performance optimization.
 
---
+---
 
-# Features:
+# Core Database Architecture & Applied Concepts
 
-- Citizen Request Management
-- Department & Category Management
-- Employee Assignment
-- Request Status Tracking
-- Request History
-- Notification System
-- Audit Logging
-- Database Triggers
-- PL/pgSQL Functions
-- Transaction Management
-- Role-Based Access Control (RBAC)
-- Backup & Restore
-- Performance Optimization
-- Database Monitoring
+## 1. Database Design & Integrity
+- Relational Modeling(3NF): Designed with full Third Normal Form compliance to eliminate data redundancy.
+- Constraints: Applied Foreign Keys, Primary Keys, Unique, and Check constraints for data integrity.
+- Views: Created modular SQL views for complex analytical and reporting queries.
 
---
+## 2. Automation & Logic (PL/pgSQL)
+- Triggers & Functions: Event-driven database automation for status tracking and logging.
+- Notification Engine: Event-triggered automated notifications for citizens and employees.
+- Audit Logging: System-wide automated `INSERT`, `UPDATE`, `DELETE` change-tracking.
+
+## 3. Concurrency & Transaction Management
+- ACID Compliance & Savepoints: Granular transaction management using `BEGIN`, `COMMIT`, `SAVEPOINT`, and `ROLLBACK`.
+- Concurrenct & Lock Analysis: Explicit locking (`FOR UPDATE`, `FOR SHARE`) and deadlock scenario analysis.
+- Isolation Levels: Evaluated behavior under `READ COMMITTED`, `REPEATABLE READ`, and `SERIALIZABLE`.
+
+## 4. Security & Governance (RBAC)
+- Role-Based Access Control: Granular permission management across 5 dedicated roles (`Citizen`, `Employee`, `Manager`, `ReadOnly`, `DBA`).
+- Security Definer Functions: Controlled data access bypassing standard user table permissions where required.
+
+## 5. Performance Optimization & Monitoring
+- Indexing Strategies: Applied B-Tree Single-column, Composite and Partial Indexes based on `EXPLAIN ANALYZE` execution plans.
+- Database Observability: System monitoring using `pg_stat_activity`, `pg_stat_user_indexes`, and cache hit ratio analysis.
+- Disaster Recovery: Implemented database backup strategies (Full, Schema-only, Data-only) and restore routines.
+
+---
 
 # Technologies
 
@@ -45,9 +54,9 @@ The project was developed using PostgreSQL and includes advanced database concep
 - pgAdmin 4
 - SQL
 - Git
-- Github
+- GitHub
 
---
+---
 
 # Entity Relationship Diagram
 
@@ -55,115 +64,74 @@ The following ER diagram represents the relational structure of the Municipality
 
 ![ER Diagram](docs/ER_Diagram.png)
 
---
+---
+
 # Project Structure
 
+```text
 Municipality-Request-Management-System
 ├── Backup_Restore
 │	├── municipality.backup
 │	├── schema_only.backup
 │	└── data_only.backup
-├── create_tables.sql
-├── deadlock.sql
-├── index_performance_report.sql
-├── indexes.sql
-├── monitoring.sql
-├── monitoring_queries.sql
-├── security.sql
-├── seed_data.sql
-├── seed_data_function.sql
-├── transaction.sql
-├── trigger.sql
-├── views.sql
+├── sql
+│	├── create_tables.sql
+│	├── deadlock_deneme.sql
+│	├── index_performance_report.sql
+│	├── indexes.sql
+│	├── monitoring.sql
+│	├── monitoring_queries.sql
+│	├── security.sql
+│	├── seed_data.sql
+│	├── seed_data_function.sql
+│	├── transaction.sql
+│	├── trigger.sql
+│	└── views.sql
+├── docs
+│	├── ER_Diagram.png
+│	└── Request_Workflow.png
+├── screenshots
+│	├── audit_logs.png
+│	├── create_table.png
+│	├── explain_analyze.png
+│	├── notifications.png
+│	├── security.png
+│	└── trigger.png
 └── README.md
+```
 
---
-
-# Database Modules
-
-- Database Design
-
-- Relational Model
-
-- Third Normal Form (3NF)
-
-- Constraints
-
-- Views
-
-- PL/pgSQL Functions
-
-- Triggers
-
-- Transactions
-
-- Savepoints
-
-- Lock & Deadlock
-
-- Role Based Access Control
-
-- Audit Logging
-
-- Notification System
-
-- Backup & Restore
-
-- Performance Optimization
-
-- Monitoring
-
---
-
-# Municipality Workflow
-
-Citizen
-    │
-    ▼
-Create Request
-    │
-    ▼
-Department Manager
-    │
-Assign Employee
-    │
-    ▼
-Employee
-    │
-Process Request
-    │
-    ▼
-Request Status Updated
-    │
-    ├──────────────┐
-    ▼              ▼
-Notification    Audit Log
-    │              │
-    ▼              ▼
-Request History Created
+---
 
 
---
+# Request Workflow
+
+The workflow below illustrates how a municipality request is processed, including automatic trigger-based operations such as history tracking, notifications, and audit logging.
+
+![Request Workflow](docs/Request_Workflow.png)
+
+---
 
 # Security
 
 Available roles:
--Citizen
--Employee
--Manager
--ReadOnly
--DBA
+
+- Citizen
+- Employee
+- Manager
+- ReadOnly
+- DBA
 
 Permissions were managed using:
--CREATE ROLE
--GRANT
--REVOKE
--ALTER ROLE
--SECURITY DEFINER
 
---
+- CREATE ROLE
+- GRANT
+- REVOKE
+- ALTER ROLE
+- SECURITY DEFINER
 
-#Trigger System
+---
+
+# Trigger System
 
 Implemented automatic database automation using PostgreSQL Triggers.
 
@@ -191,31 +159,30 @@ Stores:
 
 operations into the audit_logs table.
 
---
+---
 
 # Performance Optimization
 
-Implemented:
--Single Column Indexes
--Composite Indexes
--Partial Indexes
--EXPLAIN
--EXPLAIN ANALYZE
+Implemented optimization techniques including:
 
-Performance improvements were verified using PostgreSQL execution plans.
+- Single Column Indexes
+- Composite Indexes
+- Partial Indexes
+- EXPLAIN
+- EXPLAIN ANALYZE
 
---
+---
 
 # Backup & Restore
 
 Implemented backup strategies using PostgreSQL tools.
 
--Full Backup
--Schema Backup
--Data Backup
--Restore Operations
+- Full Backup
+- Schema Backup
+- Data Backup
+- Restore Operations
 
---
+---
 
 # Monitoring
 
@@ -234,44 +201,41 @@ Implemented monitoring queries include:
 - Table Size Analysis (`pg_relation_size`)
 - Total Relation Size Analysis (`pg_total_relation_size`)
 
---
+---
 
-# Concepts Practices
 
-- Database Design
-- Normalization
-- Constraints
-- Views
-- PL/pgSQL
-- Functions
-- Triggers
-- Transactions
-- Savepoints
-- Lock
-- Deadlock
-- RBAC
-- Security Definer
-- Backup
-- Restore
-- Monitoring
-- Indexes
-- Performance Optimization
-- VACUUM
-- EXPLAIN ANALYZE
+# Project Screenshots
+### 1. Database Schema & Tables
+A portion of the PostgreSQL database schema showing the core tables used in the Municipality Request Management System.
 
---
+![Database Tables](screenshots/create_table.png)
 
-# Screenshots
+### 2. Automated History Trigger (`request_history`)
+Every request status change is automatically recorded in the `request_history` table.
 
-- ER Diagram
-- pgAdmin Tables
-- Trigger Demonstration
-- Audit Logs
-- Notifications
-- Security Tests
-- EXPLAIN ANALYZE Results
+![History Trigger Execution](screenshots/trigger.png)
 
---
+### 3. Notification Trigger System (`notifications`)
+Automatic notifications generated through PostgreSQL triggers.
+
+![Notification Trigger Execution](screenshots/notifications.png)
+
+### 4. Audit Logging (`audit_logs`)
+All INSERT, UPDATE and DELETE operations are automatically logged into the `audit_logs` table.
+
+![Audit Log Execution](screenshots/audit_logs.png)
+
+### 5. Indexing Performance Analysis (`EXPLAIN ANALYZE`)
+Execution plan generated using `EXPLAIN ANALYZE` after implementing indexes.
+
+![EXPLAIN ANALYZE Index Scan](screenshots/explain_analyze.png)
+
+### 6. Role-Based Access Control (RBAC)
+Permission checks prevent unauthorized users from performing restricted operations.
+
+![RBAC Security](screenshots/security.png)
+
+---
 
 # Future Improvements
 
@@ -281,31 +245,15 @@ Implemented monitoring queries include:
 - CI/CD Pipeline
 - Web Application Integration
 
-#Author
+# Author
 
-Aleyna Karataş
+**Aleyna Karataş**
 
 PostgreSQL | SQL | PL/pgSQL | Database Design
 
+# License
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+This project was developed for educational and portfolio purposes.
 
 
 
