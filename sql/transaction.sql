@@ -79,13 +79,6 @@ set priority_id=3
 where request_id=4
 commit;
 
---
-
-
-
-
-
-
 
 
 
