@@ -19,7 +19,7 @@ inner join users u
 	on r.user_id=u.user_id
 where r.request_status_id=1;
 
-select * from vw_open_requests
+--select * from vw_open_requests
 
 
 --TAMAMLANAN TALEPLER RAPORU
@@ -50,7 +50,7 @@ inner join users e
 	on r.assigned_employee_id=e.user_id
 where r.request_status_id=4;
 
-select * from vw_complete_requests
+--select * from vw_complete_requests
 
 --PERSONELİN ÜZERİNDEKİ İŞ YÜKÜ
 create or replace view vw_employee_workload as
@@ -73,7 +73,7 @@ group by
 	d.department_name
 order by active_request_count desc;
 
-select * from vw_employee_workload
+--select * from vw_employee_workload
 
 --DEPARTMAN BAZLI İSTATİSTİK
 create or replace view vw_department_statistics as
@@ -102,7 +102,7 @@ group by
 	u.first_name,
 	u.last_name;	
 
-select * from vw_department_statistics
+--select * from vw_department_statistics
 
 --BİR VATANDAŞIN OLUŞTURDUĞU TÜM TALEPLER
 create or replace view vw_citizen_requests as
@@ -123,9 +123,9 @@ inner join categories c
 inner join priorities p
 	on p.priority_id=r.priority_id
 inner join request_status re
-	on re.request_status_id=r.request_status_id
+	on re.request_status_id=r.request_status_id;
 
-select * from vw_citizen_requests
+--select * from vw_citizen_requests;
 
 --SON 30 GÜN TALEPLERİ
 create or replace view vw_recent_requests as
@@ -151,5 +151,5 @@ inner join request_status re
 	on r.request_status_id=re.request_status_id
 where r.created_at >= now() - interval '30 days';
 
-select * from vw_recent_requests
+--select * from vw_recent_requests
 

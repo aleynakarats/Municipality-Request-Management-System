@@ -3,7 +3,6 @@ insert into roles(role_name) values
 ('Employee'), --role_id:2
 ('Manager'),  --role_id:3
 ('DBA');      --role_id:4
-select * from departments
 
 insert into priorities(priority_id,priority_name) values
 (1,'Low'),
@@ -57,7 +56,7 @@ values
 ('Aleyna','Karataş','aleynakaratas@gmail.com','ak3457','5315730054',4,5)--dba
 
 
--------- users(role_id:3,management)
+-------- -- Additional Managers
 insert into users(first_name,last_name,email,password_hash,phone,role_id,department_id)
 values
 ('Zeynep','Kahya','zeynepkahya@gmail.com','124587','5551112233',3,5)
@@ -85,11 +84,7 @@ update departments
 set manager_user_id=11
 where department_id=5;
 
-update departments
-set manager_user_id=8
-where department_id=3;
-
-----EMPLOYEE(role_id:2)
+----- Additional Employees
 insert into users
 (first_name,last_name,email,password_hash,phone,role_id,department_id)
 values

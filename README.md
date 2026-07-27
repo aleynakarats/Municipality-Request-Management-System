@@ -80,7 +80,7 @@ Municipality-Request-Management-System
 │	├── index_performance_report.sql
 │	├── indexes.sql
 │	├── monitoring.sql
-│	├── monitoring_queries.sql
+│	├── performance_analysis.sql
 │	├── security.sql
 │	├── seed_data.sql
 │	├── seed_data_function.sql

@@ -4,7 +4,7 @@ returns trigger
 language plpgsql
 as $$
 begin
-	if old.request_status_id is not distinct from new.request_id then
+	if old.request_status_id is not distinct from new.request_status_id then
 		return new;
 	end if;
 
@@ -71,12 +71,14 @@ for each row
 execute function fn_trigger_request_auto_history_insert();
 
 --test
+/*
 insert into requests (user_id, category_id, title, description, request_status_id, priority_id)
 values (1, 1, 'Trigger Test Talebi', 'Bakalım otomatik history oluşacak mı?', 1, 1)
 returning request_id;
+*/
 
 -- Oluşan son talebin history kaydına bakalım:
-SELECT * FROM request_history WHERE request_id =151;
+--SELECT * FROM request_history WHERE request_id =151;
 
 
 --ALL NOTIFICATIONS TRIGGER
@@ -168,15 +170,15 @@ on requests
 for each row
 execute function fn_trg_request_notification();
 
-
-select * from requests
-
-insert into requests(user_id,category_id,title,description,request_status_id,priority_id)
+--test
+/*insert into requests(user_id,category_id,title,description,request_status_id,priority_id)
 values
 (2,2,'Engelli rampası hasarlı','Engelli rampasının yüzeyi kırılmış durumda. Tekerlekli sandalye kullanan vatandaşların geçişini zorlaştırıyor.',1,2)
 returning request_id; --153
+*/
 
-select * from request_history where request_id=153
+--test
+/*select * from request_history where request_id=153
 select * from notifications order by 1 desc
 
 update requests
@@ -185,6 +187,7 @@ set request_status_id=2,
 where request_id=22
 
 select * from requests
+*/
 
 --AUDIT_LOGS
 create or replace function log_request_changes()
@@ -268,11 +271,12 @@ on requests
 for each row
 execute function log_request_changes();
 
-update requests
+--test
+/*update requests
 set title = 'Audit Trigger Test1'
 where request_id=4;
 
 select * from audit_logs
 order by audit_id desc
-
+*/
 

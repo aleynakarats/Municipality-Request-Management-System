@@ -5,7 +5,7 @@ WHERE request_status_id = 3;
 --Bitmap Heap Scan on requests  (cost=259.28..4819.19 rows=15353 width=190)
 --yaklaşık 15000 satır döndürüyor.
 --bitmap heap scan bu büyüklükteki sonuç kümesi için daha verimli
---composite index(idx_category_status) kullanılıyor
+-- PostgreSQL yürütme planı, bileşik dizini kullanır.
 
 explain
 select * from requests

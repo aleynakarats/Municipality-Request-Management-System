@@ -93,7 +93,7 @@ create table requests
 	request_status_id int not null default 1,--1=open
 	title varchar(100) not null,
 	description text not null,
-	assigned_employee_id int,--başta null yönetici employee atadığında dolar
+	assigned_employee_id int,--Başlangıçta NULL'dır. Yönetici atama yaptığında doldurulur.
 	priority_id int not null default 1,--1=low
 	created_at timestamptz default now(),
 	updated_at timestamptz default now(),

@@ -1,4 +1,4 @@
--------REQUESTS
+-------REQUESTS:Rastgele vatandaş talepleri oluşturur.
 create or replace function generate_random_requests(p_count int)
 returns void
 language plpgsql
@@ -62,12 +62,13 @@ begin
  
 end;
 $$
+
 ---KONTROL
 --select generate_random_requests(50);
 --select * from requests
 --select * from notifications
 
------open durumundaki talepleri assigned durumuna geçirir
+-----Çalışanları rastgele açık taleplere atar
 create or replace function assign_random_employee(p_count int)
 returns void
 language plpgsql
@@ -144,10 +145,8 @@ begin
 end;
 $$
 
-select assign_random_employee(5)
---select * from requests where request_status_id=2
---select * from notifications
-
+--example
+--select assign_random_employees(5);
 
 --personelin işe başlaması
 create or replace function start_random_requests(p_count int)
@@ -193,9 +192,6 @@ begin
 	return;
 end;
 $$
-
-select start_random_requests(10)
-
 
 ----personelin işi tamamlaması
 create or replace function complete_random_requests(p_count int)
@@ -243,8 +239,6 @@ begin
 end;
 $$
 
-select complete_random_requests(10)
-select * from notifications
 
 ---yorum ekleme
 create or replace function generate_random_comments(p_count int)
@@ -321,18 +315,4 @@ begin
 	return;
 end;
 $$;
-
-select generate_random_comments(30)
-
---NOTIFICATIONS
-
-
-
-
-
-
-
-
-
-
 
